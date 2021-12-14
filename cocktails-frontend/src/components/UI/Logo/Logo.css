@@ -1,0 +1,12 @@
+.Logo {
+    box-sizing: border-box;
+    border-radius: 5px;
+    font-size: 25px;
+    font-weight: bold;
+    margin-top: 7px;
+}
+
+.Logo a{
+    color: #252b3a;
+    text-decoration: none;
+}
