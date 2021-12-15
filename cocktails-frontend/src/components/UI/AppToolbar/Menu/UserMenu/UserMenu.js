@@ -44,14 +44,6 @@ const useStyles = makeStyles({
 });
 
 const UserMenu = ({user}) => {
-    let cardImage = imageNotAvailable;
-
-    if (user.facebookId){
-        cardImage = user.avatar;
-    } else if (user.avatar) {
-        cardImage = apiURL + '/' + user.avatar;
-    }
-
     const classes = useStyles();
     const dispatch = useDispatch();
     const Navigate = useNavigate();
@@ -77,7 +69,16 @@ const UserMenu = ({user}) => {
         setAnchorEl(null);
     };
 
-  return (
+    let cardImage = imageNotAvailable;
+
+    if (user.facebookId){
+        cardImage = user.avatar;
+    } else if (user.avatar) {
+        cardImage = apiURL + '/' + user.avatar;
+    }
+
+
+    return (
       <>
           <Box className={classes.containerBox}>
               <Box className={classes.childBox}>
@@ -86,7 +87,7 @@ const UserMenu = ({user}) => {
                       aria-controls="simple-menu"
                       aria-haspopup="true"
                   >
-                      Hello, {user.name} !
+                      Hello, {user.displayName} !
                   </Button>
               </Box>
               <Box>

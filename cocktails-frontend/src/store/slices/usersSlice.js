@@ -17,15 +17,15 @@ const usersSlice = createSlice({
   name,
   initialState,
   reducers: {
-    registerUserRequest(state) {
+    facebookRegisterRequest(state) {
       state.registerLoading = true;
     },
-    registerUserSuccess(state, {payload: userData}) {
+    facebookRegisterSuccess(state, {payload: userData}) {
       state.user = userData;
       state.registerLoading = false;
       state.registerError = null;
     },
-    registerUserFailure(state, action) {
+    facebookRegisterFailure(state, action) {
       state.registerLoading = false;
       state.registerError = action.payload;
     },

@@ -79,11 +79,11 @@ const LoginForm = ({userData, submitFormHandler, loading, onInputChange, error})
                     </Grid>
 
                     <Grid item xs={12}>
-                        <FacebookLogin/>
+                        <FacebookLogin action="Login"/>
                     </Grid>
 
                     <Grid item container justifyContent="flex-end">
-                        <NavLink to="/register">
+                        <NavLink to="/register" style={{display: "inline-block",color: "black", margin:"20px 0"}}>
                              or Sign up
                         </NavLink>
                     </Grid>

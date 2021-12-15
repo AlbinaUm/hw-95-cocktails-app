@@ -1,10 +1,10 @@
 import React, {useEffect} from 'react';
-import {useNavigate} from "react-router-dom";
+import RegisterForm from "../../components/registerForm/registerForm";
 import {useDispatch, useSelector} from "react-redux";
+import {useNavigate} from "react-router-dom";
 import {clearUserErrorsRequest} from "../../store/actions/usersActions";
-import {toast} from "react-toastify";
 
-const Cocktails = () => {
+const Register = () => {
     const Navigate = useNavigate();
     const dispatch = useDispatch();
     const user = useSelector(state => state.users.user);
@@ -12,21 +12,14 @@ const Cocktails = () => {
     useEffect(() => {
         dispatch(clearUserErrorsRequest());
 
-        if (!user){
-            toast.warning('You must to login !');
-            Navigate('/login');
-        }
-
-    }, [dispatch, user]);
-
-
-
+        if (user) Navigate('/');
+    }, [dispatch, user, Navigate]);
 
     return (
         <>
-
+            <RegisterForm/>
         </>
     );
 };
 
-export default Cocktails;
+export default Register;

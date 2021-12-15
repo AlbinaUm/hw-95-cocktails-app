@@ -1,9 +1,9 @@
 import usersSlice from "../slices/usersSlice";
 
 export const {
-  registerUserRequest,
-  registerUserSuccess,
-  registerUserFailure,
+  facebookRegisterRequest,
+  facebookRegisterSuccess,
+  facebookRegisterFailure,
   loginUserRequest,
   loginUserSuccess,
   loginUserFailure,

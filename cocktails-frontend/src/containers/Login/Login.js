@@ -17,9 +17,10 @@ const Login = () => {
 
     useEffect(() => {
         dispatch(clearUserErrorsRequest());
-    }, [dispatch]);
 
-    if (user) Navigate(`/`);
+        if (user) Navigate(`/`);
+    }, [dispatch, user, Navigate]);
+
 
     const onInputChange = e => {
         const {name, value} = e.target;

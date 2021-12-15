@@ -4,13 +4,18 @@ import {Button} from "@material-ui/core";
 import FacebookIcon from '@material-ui/icons/Facebook';
 import {useDispatch} from "react-redux";
 import {facebookAppId} from "../../../config";
-import {facebookLoginRequest} from "../../../store/actions/usersActions";
+import {facebookLoginRequest, facebookRegisterRequest} from "../../../store/actions/usersActions";
 
-const FacebookLogin = () => {
+const FacebookLogin = ({action}) => {
     const dispatch = useDispatch();
 
     const  facebookResponse = response => {
-        dispatch(facebookLoginRequest(response));
+        if (action === "Login"){
+            dispatch(facebookLoginRequest(response));
+        } else if (action === "Sing up"){
+            dispatch(facebookRegisterRequest(response));
+        }
+
     };
 
     return (
@@ -25,7 +30,7 @@ const FacebookLogin = () => {
                     startIcon={<FacebookIcon/>}
                     onClick={props.onClick}
                 >
-                    Login with facebook
+                    {action} with facebook
                 </Button>
             )}
             callback={facebookResponse}

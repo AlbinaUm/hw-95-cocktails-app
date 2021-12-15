@@ -1,8 +1,5 @@
 import {takeEvery} from "redux-saga/effects";
 import {
-  registerUserRequest,
-  registerUserFailure,
-  registerUserSuccess,
   logoutUserRequest,
   logoutUserSuccess,
   loginUserRequest,
@@ -10,20 +7,21 @@ import {
   loginUserFailure,
   clearUserErrorsSuccess,
   clearUserErrorsRequest,
-  logoutUserFailure, facebookLoginRequest,
+  logoutUserFailure, facebookLoginRequest, facebookRegisterSuccess, facebookRegisterFailure, facebookRegisterRequest,
 } from "../actions/usersActions";
 import axiosApi from "../../axiosApi";
 import {put} from 'redux-saga/effects';
 import {toast} from "react-toastify";
 
-export function* registerUserSaga({payload: userData}) {
-  try {
-    const response = yield axiosApi.post('/users', userData);
-    yield put(registerUserSuccess(response.data));
-    toast.success('Registered successful!');
-  } catch (error) {
-    toast.error(error.response.data.global);
-    yield put(registerUserFailure(error.response.data));
+export function* facebookRegisterSagas ({payload: data}) {
+  try{
+    const response = yield axiosApi.post('/users/facebookLogin', data);
+    yield put(facebookRegisterSuccess(response.data.user));
+    toast.success('Login successful', {
+      position: toast.POSITION.BOTTOM_RIGHT,
+    });
+  } catch (error){
+    yield put(facebookRegisterFailure(error));
   }
 }
 
@@ -78,7 +76,7 @@ export function* clearUserErrorsSaga () {
 }
 
 const usersSaga = [
-    takeEvery(registerUserRequest, registerUserSaga),
+    takeEvery(facebookRegisterRequest, facebookRegisterSagas),
     takeEvery(loginUserRequest, loginUserSaga),
     takeEvery(logoutUserRequest, logoutUserSaga),
     takeEvery(clearUserErrorsRequest, clearUserErrorsSaga),
