@@ -5,6 +5,7 @@ const cors = require('cors');
 const exitHook = require('async-exit-hook');
 const config = require('./config');
 const users = require('./app/users');
+const cocktails = require('./app/cocktails');
 
 
 const app = express();
@@ -16,6 +17,7 @@ app.use(express.static('public'));
 const port = 8000;
 
 app.use('/users', users);
+app.use('/cocktails', cocktails);
 
 
 const run = async () => {

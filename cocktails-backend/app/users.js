@@ -16,7 +16,7 @@ router.get('/', async (req, res) => {
 });
 
 router.post('/sessions', async (req, res) => {
-  const user = await User.findOne({email: req.body.email}).populate('subscriptions', 'email');
+  const user = await User.findOne({email: req.body.email});
 
   try {
     if (!user){
