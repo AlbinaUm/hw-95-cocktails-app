@@ -35,7 +35,7 @@ router.post('/', auth, upload.single('image'), async (req, res) => {
       user: req.user._id,
       title: req.body.title,
       recipe: req.body.recipe,
-      ingredients: req.body.ingredients,
+      ingredients: JSON.parse(req.body.ingredients),
     };
 
     if (req.file) {
