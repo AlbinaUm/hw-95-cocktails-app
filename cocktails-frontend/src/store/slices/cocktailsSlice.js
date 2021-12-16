@@ -2,11 +2,14 @@ import {createSlice} from "@reduxjs/toolkit";
 
 export const initialState = {
     cocktails: [],
+    currentCocktail: null,
     postCocktailLoading: false,
     postCocktailError: null,
     postCocktailStatus: '',
     fetchCocktailsLoading: false,
     fetchCocktailsError: null,
+    getCocktailByIdLoading: false,
+    getCocktailByIdError: null,
     clearCocktailsErrorLoading: false,
 };
 
@@ -49,6 +52,17 @@ const cocktailsSlice = createSlice({
         fetchAllCocktailsFailure (state, action){
             state.fetchCocktailsLoading = false;
             state.fetchCocktailsError = action.payload;
+        },
+        getCocktailByIdRequest (state) {
+            state.getCocktailByIdLoading = true;
+        },
+        getCocktailByIdSuccess (state, {payload: cocktail}) {
+            state.currentCocktail = cocktail;
+            state.getCocktailByIdLoading = false;
+            state.getCocktailByIdError = null;
+        },
+        getCocktailByIdFailure (state, action) {
+            state.getCocktailByIdError = action.payload;
         },
     }
 });

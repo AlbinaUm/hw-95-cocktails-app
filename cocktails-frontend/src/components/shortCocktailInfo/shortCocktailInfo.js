@@ -3,18 +3,27 @@ import './shortCocktailInfo.css';
 import imageNotAvailable from "../../assets/images/noimage.png";
 import {apiURL} from "../../config";
 import {useSelector} from "react-redux";
+import {useNavigate} from "react-router-dom";
 
 
 const ShortCocktailInfo = ({image, title, published, id, onDelete, onPublished}) => {
     const user = useSelector(state => state.users.user);
+    const navigate = useNavigate();
     let cardImage = imageNotAvailable;
 
     if (image) {
         cardImage = apiURL + '/' + image;
     }
 
+    const onCocktailBlock = id => {
+        navigate(`/cocktailFullInfo/${id.id}`);
+    };
+
     return (
-        <div className={`CocktailShortItem ${published ? 'published' : 'unpublished'}`}>
+        <div
+            className={`CocktailShortItem ${published ? 'published' : 'unpublished'}`}
+            onClick={() => onCocktailBlock({id})}
+        >
             <div>
                 <img width="150px" src={cardImage} alt={id}/>
             </div>

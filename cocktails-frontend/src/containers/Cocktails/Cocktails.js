@@ -6,6 +6,7 @@ import {toast} from "react-toastify";
 import {fetchAllCocktailsRequest} from "../../store/actions/cocktailsActions";
 import Spinner from "../../components/UI/Spinner/Spinner";
 import ShortCocktailInfo from "../../components/shortCocktailInfo/shortCocktailInfo";
+import './Cocktails.css';
 
 const Cocktails = () => {
     const Navigate = useNavigate();
@@ -33,7 +34,7 @@ const Cocktails = () => {
                 <>
                     {cocktails.length === 0 ? <h1>No cocktails yet</h1>
                         :
-                        <>
+                        <div className="FullCocktailsList">
                             {cocktails.map(c => (
                                 <ShortCocktailInfo
                                     key={c._id}
@@ -45,7 +46,7 @@ const Cocktails = () => {
                                     onPublished={() => console.log(c._id)}
                                 />
                             ))}
-                        </>
+                        </div>
                     }
                 </>
             }

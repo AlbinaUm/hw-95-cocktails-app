@@ -9,4 +9,8 @@ export const {
     fetchAllCocktailsRequest,
     fetchAllCocktailsSuccess,
     fetchAllCocktailsFailure,
+    getCocktailByIdRequest,
+    getCocktailByIdSuccess,
+    getCocktailByIdFailure,
+
 } = cocktailsSlice.actions;

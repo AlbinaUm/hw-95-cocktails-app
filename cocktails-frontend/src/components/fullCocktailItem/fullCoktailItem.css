@@ -1,0 +1,16 @@
+.BaseInfoAboutCocktail{
+    display: flex;
+}
+
+.CocktailImage{
+    margin-right: 10px;
+    width: 30%;
+}
+
+.CocktailImage img{
+    border: 1px solid black;
+}
+
+.IngredientItem{
+    margin: 10px 0;
+}

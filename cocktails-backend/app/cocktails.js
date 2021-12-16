@@ -24,7 +24,6 @@ router.get('/', auth, async (req, res) => {
     let cocktails = [];
     const query = {};
 
-    console.log(req.user);
     if (req.query.user){
         query.user = req.query.user;
         cocktails = await Cocktail.find(query).populate('user');
@@ -39,6 +38,20 @@ router.get('/', auth, async (req, res) => {
 
     res.send(cocktails);
   } catch (e){
+    res.sendStatus(500);
+  }
+});
+
+router.get('/:id', async (req, res) => {
+  try {
+    const cocktail = await Cocktail.findById(req.params.id).populate('user');
+
+    if (cocktail) {
+      res.send(cocktail);
+    } else {
+      res.status(404).send({error: 'Cocktail not found'});
+    }
+  } catch {
     res.sendStatus(500);
   }
 });

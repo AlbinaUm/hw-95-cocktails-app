@@ -91,7 +91,7 @@ const AddCocktailForm = props => {
                                     autoComplete="new-amount"
                                     label="Amount"
                                     name="amount"
-                                    onChange={e => onIngredChange(i, 'title', e.target.value)}
+                                    onChange={e => onIngredChange(i, 'amount', e.target.value)}
                                     error={Boolean(error)}
                                 />
 

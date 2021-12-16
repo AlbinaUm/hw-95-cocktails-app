@@ -1,7 +1,11 @@
 import {takeEvery} from "redux-saga/effects";
 import {
     clearCocktailsErrorsRequest,
-    clearCocktailSErrorsSuccess, fetchAllCocktailsFailure, fetchAllCocktailsRequest, fetchAllCocktailsSuccess,
+    clearCocktailSErrorsSuccess,
+    fetchAllCocktailsFailure,
+    fetchAllCocktailsRequest,
+    fetchAllCocktailsSuccess,
+    getCocktailByIdFailure, getCocktailByIdRequest, getCocktailByIdSuccess,
     postNewCocktailFailure,
     postNewCocktailRequest,
     postNewCocktailSuccess
@@ -42,10 +46,18 @@ export function* fetchCocktailsSagas ({payload: queryString}) {
 
     try{
         const response = yield axiosApi.get(queryString ? '/cocktails' + queryString  : '/cocktails', {headers});
-        console.log(response.data);
         yield put(fetchAllCocktailsSuccess(response.data));
     } catch (error){
         yield put(fetchAllCocktailsFailure(error));
+    }
+}
+
+export function* getCocktailByIdSagas ({payload: id}) {
+    try {
+        const response = yield axiosApi.get('/cocktails/' + id);
+        yield put(getCocktailByIdSuccess(response.data));
+    } catch (error){
+        yield put(getCocktailByIdFailure(error));
     }
 }
 
@@ -59,8 +71,9 @@ export function* clearCocktailsErrorsSagas () {
 
 const cocktailsSaga = [
     takeEvery(postNewCocktailRequest, postNewCocktailSagas),
-    takeEvery(clearCocktailsErrorsRequest, clearCocktailsErrorsSagas),
     takeEvery(fetchAllCocktailsRequest, fetchCocktailsSagas),
+    takeEvery(getCocktailByIdRequest, getCocktailByIdSagas),
+    takeEvery(clearCocktailsErrorsRequest, clearCocktailsErrorsSagas),
 ];
 
 export default cocktailsSaga;
