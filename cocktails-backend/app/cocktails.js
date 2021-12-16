@@ -5,6 +5,7 @@ const {nanoid} = require('nanoid');
 const config = require('../config');
 const auth = require("../middleware/auth");
 const Cocktail = require("../models/Cocktail");
+const permit = require("../middleware/permit");
 
 const storage = multer.diskStorage({
   destination: (req, file, cb) => {
@@ -77,6 +78,20 @@ router.post('/', auth, upload.single('image'), async (req, res) => {
     res.send(cocktail);
   } catch (error) {
     res.status(400).send(error);
+  }
+});
+
+router.delete('/:id', auth, permit('admin'), async (req, res) => {
+  try {
+    const cocktail = await Cocktail.findByIdAndDelete(req.params.id);
+
+    if (cocktail) {
+      res.send(`Cocktail "${cocktail.title}" was removed`);
+    } else {
+      res.status(404).send({error: 'Cocktail not found'});
+    }
+  } catch (e) {
+    res.sendStatus(500);
   }
 });
 
