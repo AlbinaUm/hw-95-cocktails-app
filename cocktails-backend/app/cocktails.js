@@ -81,6 +81,24 @@ router.post('/', auth, upload.single('image'), async (req, res) => {
   }
 });
 
+router.post('/:id/publish', auth, permit('admin'), async (req, res) => {
+  try{
+    const cocktail = await Cocktail.findById(req.params.id);
+
+    if (cocktail){
+      cocktail.published = !cocktail.published;
+
+      await cocktail.save();
+      res.send(cocktail);
+    } else {
+      res.status(404).send({error: 'Cocktail not found'});
+    }
+
+  } catch (e){
+    res.sendStatus(500);
+  }
+});
+
 router.delete('/:id', auth, permit('admin'), async (req, res) => {
   try {
     const cocktail = await Cocktail.findByIdAndDelete(req.params.id);
