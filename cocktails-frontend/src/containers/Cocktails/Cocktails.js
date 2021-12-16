@@ -3,7 +3,7 @@ import {useNavigate} from "react-router-dom";
 import {useDispatch, useSelector} from "react-redux";
 import {clearUserErrorsRequest} from "../../store/actions/usersActions";
 import {toast} from "react-toastify";
-import {fetchAllCocktailsRequest} from "../../store/actions/cocktailsActions";
+import {deleteCocktailRequest, fetchAllCocktailsRequest} from "../../store/actions/cocktailsActions";
 import Spinner from "../../components/UI/Spinner/Spinner";
 import ShortCocktailInfo from "../../components/shortCocktailInfo/shortCocktailInfo";
 import './Cocktails.css';
@@ -27,6 +27,17 @@ const Cocktails = () => {
 
     }, [dispatch, user, Navigate]);
 
+    const deleteCocktailById = async id => {
+        try {
+            console.log(id);
+            await dispatch(deleteCocktailRequest(id));
+            Navigate('/');
+        } catch (e){
+            console.log(e);
+        }
+
+    };
+
 
     return cocktails && (
         <>
@@ -42,7 +53,7 @@ const Cocktails = () => {
                                     image={c.image}
                                     title={c.title}
                                     published={c.published}
-                                    onDelete={() => console.log(c._id)}
+                                    onDelete={() => deleteCocktailById(c._id)}
                                     onPublished={() => console.log(c._id)}
                                 />
                             ))}

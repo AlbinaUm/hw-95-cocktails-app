@@ -31,20 +31,23 @@ const ShortCocktailInfo = ({image, title, published, id, onDelete, onPublished})
                 <h4>{title}</h4>
             </div>
 
-            {user.role === 'admin' ?
-                <div>
-                    {published === false ?
-                        <button onClick={() => onPublished({id})}>Published</button>
-                        :
-                        null
-                    }
-                    <button onClick={() => onDelete({id})}>Delete</button>
-                </div>
-                :
-                <div style={{textAlign: "left", fontSize: "14px", margin: "10px 0 0 10px"}}>
-                    {published === false ? <h4>*Wait for the administrator to approve your cocktail</h4> : null}
-                </div>
-            }
+            <div className="addActions">
+                {user.role === 'admin' ?
+                    <div>
+                        {published === false ?
+                            <button onClick={() => onPublished({id})}>Published</button>
+                            :
+                            null
+                        }
+                        <button onClick={() => onDelete({id})}>Delete</button>
+                    </div>
+                    :
+                    <div style={{textAlign: "left", fontSize: "14px", margin: "10px 0 0 10px"}}>
+                        {published === false ? <h4>*Wait for the administrator to approve your cocktail</h4> : null}
+                    </div>
+                }
+            </div>
+
         </div>
     );
 };

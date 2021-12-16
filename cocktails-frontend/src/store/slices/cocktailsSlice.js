@@ -10,6 +10,8 @@ export const initialState = {
     fetchCocktailsError: null,
     getCocktailByIdLoading: false,
     getCocktailByIdError: null,
+    deleteCocktailLoading: false,
+    deleteCocktailError: null,
     clearCocktailsErrorLoading: false,
 };
 
@@ -63,6 +65,17 @@ const cocktailsSlice = createSlice({
         },
         getCocktailByIdFailure (state, action) {
             state.getCocktailByIdError = action.payload;
+        },
+        deleteCocktailRequest (state){
+            state.deleteCocktailLoading = true;
+        },
+        deleteCocktailSuccess (state, action){
+            state.cocktails = state.cocktails.filter(c => c._id !== action.payload);
+            state.deleteCocktailLoading = false;
+        },
+        deleteCocktailFailure (state, action){
+            state.deleteCocktailError = action.payload;
+            state.deleteCocktailLoading = false;
         },
     }
 });
