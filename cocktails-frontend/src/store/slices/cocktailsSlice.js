@@ -12,6 +12,8 @@ export const initialState = {
     getCocktailByIdError: null,
     deleteCocktailLoading: false,
     deleteCocktailError: null,
+    publishCocktailLoading: false,
+    publishCocktailError: null,
     clearCocktailsErrorLoading: false,
 };
 
@@ -76,6 +78,17 @@ const cocktailsSlice = createSlice({
         deleteCocktailFailure (state, action){
             state.deleteCocktailError = action.payload;
             state.deleteCocktailLoading = false;
+        },
+        publishCocktailRequest (state){
+            state.publishCocktailLoading = true;
+        },
+        publishCocktailSuccess (state){
+            state.publishCocktailLoading = false;
+            state.publishCocktailError = null;
+        },
+        publishCocktailFailure (state, action){
+            state.publishCocktailLoading = false;
+            state.publishCocktailError = action.payload;
         },
     }
 });
