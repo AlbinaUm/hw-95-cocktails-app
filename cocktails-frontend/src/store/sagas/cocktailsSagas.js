@@ -1,7 +1,7 @@
 import {takeEvery} from "redux-saga/effects";
 import {
     clearCocktailsErrorsRequest,
-    clearCocktailSErrorsSuccess,
+    clearCocktailSErrorsSuccess, fetchAllCocktailsFailure, fetchAllCocktailsRequest, fetchAllCocktailsSuccess,
     postNewCocktailFailure,
     postNewCocktailRequest,
     postNewCocktailSuccess
@@ -33,6 +33,22 @@ export function* postNewCocktailSagas ({payload: data}) {
     }
 }
 
+export function* fetchCocktailsSagas ({payload: queryString}) {
+    const state = store.getState();
+
+    const headers = {
+        'Authorization': state.users.user?.token
+    };
+
+    try{
+        const response = yield axiosApi.get(queryString ? '/cocktails' + queryString  : '/cocktails', {headers});
+        console.log(response.data);
+        yield put(fetchAllCocktailsSuccess(response.data));
+    } catch (error){
+        yield put(fetchAllCocktailsFailure(error));
+    }
+}
+
 export function* clearCocktailsErrorsSagas () {
     try {
         yield put(clearCocktailSErrorsSuccess());
@@ -44,6 +60,7 @@ export function* clearCocktailsErrorsSagas () {
 const cocktailsSaga = [
     takeEvery(postNewCocktailRequest, postNewCocktailSagas),
     takeEvery(clearCocktailsErrorsRequest, clearCocktailsErrorsSagas),
+    takeEvery(fetchAllCocktailsRequest, fetchCocktailsSagas),
 ];
 
 export default cocktailsSaga;

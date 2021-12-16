@@ -1,0 +1,16 @@
+.CocktailShortItem{
+    border: 2px solid black;
+    width: 28%;
+    margin-bottom: 20px;
+    text-align: center;
+    padding: 15px;
+}
+
+.CocktailShortItem img{
+    width: 90%;
+    border: 1px solid black;
+}
+
+.CocktailShortItem.unpublished{
+    background: #b4b4b4;
+}

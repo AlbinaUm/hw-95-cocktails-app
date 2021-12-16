@@ -37,12 +37,13 @@ const AddCocktailForm = props => {
         submitFormHandler,
         loading,
         onIngredChange,
-        error,
+
         deleteIngredient,
         addIngredient,
         cocktailData,
         onInputChange,
         fileChangeHandler,
+        error,
     } = props;
 
     return (
@@ -67,7 +68,6 @@ const AddCocktailForm = props => {
                             value={cocktailData.title}
                             onChange={onInputChange}
                             error={Boolean(error)}
-                            helperText={error?.message}
                         />
                     </Grid>
 
@@ -83,7 +83,6 @@ const AddCocktailForm = props => {
                                     name="title"
                                     onChange={e => onIngredChange(i, 'title', e.target.value)}
                                     error={Boolean(error)}
-                                    helperText={error?.message}
                                 />
 
                                 <TextField
@@ -94,7 +93,6 @@ const AddCocktailForm = props => {
                                     name="amount"
                                     onChange={e => onIngredChange(i, 'title', e.target.value)}
                                     error={Boolean(error)}
-                                    helperText={error?.message}
                                 />
 
                                 <Grid>
@@ -121,6 +119,7 @@ const AddCocktailForm = props => {
                             value={cocktailData.recipe}
                             onChange={onInputChange}
                             minRows={3}
+                            error={Boolean(error)}
                             style={{ width: "396px", height: "50px" ,resize: "none" }}
                         />
                     </Grid>

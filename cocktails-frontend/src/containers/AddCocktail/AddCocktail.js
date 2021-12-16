@@ -10,6 +10,7 @@ const AddCocktail = () => {
     const dispatch = useDispatch();
     const user = useSelector(state => state.users.user);
     const postStatus = useSelector(state => state.cocktails.postCocktailStatus);
+    const error = useSelector(state => state.cocktails.postCocktailError);
     const [ingredients, setIngredients] = useState([{
         title: '',
         amount: '',
@@ -101,6 +102,7 @@ const AddCocktail = () => {
                 addIngredient={addIngredients}
                 submitFormHandler={submitForm}
                 cocktailData={cocktailData}
+                error={error}
                 onInputChange={onInputChange}
                 fileChangeHandler={fileChangeHandler}
             />

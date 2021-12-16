@@ -48,17 +48,11 @@ const UserMenu = ({user}) => {
     const dispatch = useDispatch();
     const Navigate = useNavigate();
     const state = useSelector(state => state.users.user);
-    const loading = useSelector(state => state.users.logoutLoading);
-    const error = useSelector(state => state.users.logoutError);
     const [anchorEl, setAnchorEl] = useState(null);
 
     const logOut = () => {
         dispatch(logoutUserRequest({...state}));
-        if (loading === false){
-            if (!error){
-                Navigate('/');
-            }
-        }
+        Navigate('/login');
     };
 
     const handleClick = (event) => {
@@ -76,7 +70,6 @@ const UserMenu = ({user}) => {
     } else if (user.avatar) {
         cardImage = apiURL + '/' + user.avatar;
     }
-
 
     return (
       <>
@@ -105,7 +98,13 @@ const UserMenu = ({user}) => {
               open={Boolean(anchorEl)}
               onClose={handleClose}
           >
-              <MenuItem className={classes.menuItem} component={Link} to='/myCocktail'>My cocktails</MenuItem>
+              <MenuItem
+                  className={classes.menuItem}
+                  component={Link}
+                  to={`/myCocktails?user=${user._id}`}
+              >
+                  My cocktails
+              </MenuItem>
               <MenuItem className={classes.menuItem} component={Link} to='/addNewCocktail'>Add new cocktail</MenuItem>
               <MenuItem className={classes.menuItem} onClick={logOut}>Logout</MenuItem>
           </Menu>

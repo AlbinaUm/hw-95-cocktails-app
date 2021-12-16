@@ -19,9 +19,23 @@ const upload = multer({storage});
 
 const router = express.Router();
 
-router.get('/', async (req, res) => {
+router.get('/', auth, async (req, res) => {
   try {
-    const cocktails = await Cocktail.find();
+    let cocktails = [];
+    const query = {};
+
+    console.log(req.user);
+    if (req.query.user){
+        query.user = req.query.user;
+        cocktails = await Cocktail.find(query).populate('user');
+    } else {
+
+        if(req.user.role === 'admin') {
+          cocktails = await Cocktail.find().populate('user');
+        } else {
+          cocktails = await Cocktail.find({published: true}).populate('user');
+        }
+    }
 
     res.send(cocktails);
   } catch (e){

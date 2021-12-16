@@ -6,4 +6,7 @@ export const {
     postNewCocktailFailure,
     clearCocktailsErrorsRequest,
     clearCocktailSErrorsSuccess,
+    fetchAllCocktailsRequest,
+    fetchAllCocktailsSuccess,
+    fetchAllCocktailsFailure,
 } = cocktailsSlice.actions;

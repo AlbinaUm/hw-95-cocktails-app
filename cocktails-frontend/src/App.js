@@ -4,6 +4,7 @@ import Cocktails from "./containers/Cocktails/Cocktails";
 import Login from "./containers/Login/Login";
 import Register from "./containers/Register/Register";
 import AddCocktail from "./containers/AddCocktail/AddCocktail";
+import MyCocktails from "./containers/MyCocktails/MyCocktails";
 
 
 const App = () => (
@@ -13,6 +14,7 @@ const App = () => (
             <Route path="/login" element={<Login/>}/>
             <Route path="/register" element={<Register/>}/>
             <Route path="addNewCocktail" element={<AddCocktail/>}/>
+            <Route path="/myCocktails" element={<MyCocktails/>}/>
             <Route path="*" element={<h1 style={{textAlign: "center", margin: "60px 0"}}>404 Not found</h1>}/>
         </Routes>
     </Layout>
