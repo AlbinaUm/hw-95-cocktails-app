@@ -4,6 +4,7 @@ import {useDispatch, useSelector} from "react-redux";
 import {clearUserErrorsRequest} from "../../store/actions/usersActions";
 import {toast} from "react-toastify";
 import {
+    clearCocktailsErrorsRequest,
     deleteCocktailRequest,
     fetchAllCocktailsRequest,
     publishCocktailRequest
@@ -28,6 +29,7 @@ const Cocktails = () => {
         }
 
         dispatch(fetchAllCocktailsRequest());
+        dispatch(clearCocktailsErrorsRequest());
 
     }, [dispatch, user, Navigate]);
 

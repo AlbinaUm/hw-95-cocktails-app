@@ -33,8 +33,13 @@ export function* loginUserSaga({payload: userData}) {
       position: toast.POSITION.BOTTOM_RIGHT,
     });
   } catch (error) {
-    toast.error(error.response.data.global);
     yield put(loginUserFailure(error.response.data));
+
+    if (error.response.data.global){
+      toast.error(error.response.data.global);
+    } else {
+      toast.error(error);
+    }
   }
 }
 
@@ -50,8 +55,9 @@ export function* logoutUserSaga (state) {
       position: toast.POSITION.BOTTOM_RIGHT,
     });
   } catch (error){
-    toast.error(error.response.data.global);
     yield put(logoutUserFailure(error.response.data));
+
+    if (error.response.data.global) toast.error(error.response.data.global);
   }
 }
 
@@ -63,7 +69,11 @@ export function* facebookLoginSagas ({payload: data}) {
       position: toast.POSITION.BOTTOM_RIGHT,
     });
   } catch (error){
-    yield put(loginUserFailure(error));
+    yield put(loginUserFailure(error.response.data));
+
+    if (error.response.data.global){
+      toast.error(error.response.data.global);
+    }
   }
 }
 

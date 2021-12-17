@@ -4,6 +4,7 @@ import {useLocation} from "react-router-dom";
 import {fetchAllCocktailsRequest} from "../../store/actions/cocktailsActions";
 import Spinner from "../../components/UI/Spinner/Spinner";
 import ShortCocktailInfo from "../../components/shortCocktailInfo/shortCocktailInfo";
+import './MyCocktails.css';
 
 const MyCocktails = () => {
     const dispatch = useDispatch();
@@ -20,10 +21,12 @@ const MyCocktails = () => {
     return myCocktails && (
         <>
             {loading ? <Spinner/> :
-                <>
+                <div className="MyCocktails">
+                    <h1>My cocktails list</h1>
+
                     {myCocktails.length === 0 ? <h1>No cocktails yet</h1>
                         :
-                        <>
+                        <div className="MyCocktailsList">
                             {myCocktails.map(c => (
                                 <ShortCocktailInfo
                                     key={c._id}
@@ -34,9 +37,9 @@ const MyCocktails = () => {
                                     userId={c.user._id}
                                 />
                             ))}
-                        </>
+                        </div>
                     }
-                </>
+                </div>
             }
         </>
     );

@@ -98,6 +98,8 @@ const UserMenu = ({user}) => {
               open={Boolean(anchorEl)}
               onClose={handleClose}
           >
+              <MenuItem className={classes.menuItem} component={Link} to='/'>All cocktails</MenuItem>
+
               <MenuItem
                   className={classes.menuItem}
                   component={Link}
@@ -105,6 +107,7 @@ const UserMenu = ({user}) => {
               >
                   My cocktails
               </MenuItem>
+
               <MenuItem className={classes.menuItem} component={Link} to='/addNewCocktail'>Add new cocktail</MenuItem>
               <MenuItem className={classes.menuItem} onClick={logOut}>Logout</MenuItem>
           </Menu>

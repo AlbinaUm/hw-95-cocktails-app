@@ -1,0 +1,11 @@
+.MyCocktails h1{
+    text-align: center;
+    border-bottom: 2px solid black;
+    padding-bottom: 10px;
+    margin-bottom: 30px;
+}
+
+.MyCocktailsList{
+    display: flex;
+    flex-wrap: wrap;
+}

@@ -14,7 +14,7 @@ const FullCocktailItem = ({title, ingredients, recipe, image, id}) => {
         <div className="FullCocktailItem">
             <div className="BaseInfoAboutCocktail">
                 <div className="CocktailImage">
-                    <img width="300px" src={cardImage} alt={id}/>
+                    <img width="290px" src={cardImage} alt={id}/>
                 </div>
                 <div>
                     <h1>{title}</h1>

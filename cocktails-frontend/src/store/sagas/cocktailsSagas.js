@@ -30,10 +30,15 @@ export function* postNewCocktailSagas ({payload: data}) {
             position: toast.POSITION.BOTTOM_RIGHT,
         });
     } catch (error){
-        yield put(postNewCocktailFailure(error));
-        toast.error('Cocktail was not added', {
-            position: toast.POSITION.BOTTOM_RIGHT,
-        });
+        yield put(postNewCocktailFailure(error.response.data));
+
+        if (error.response.data.global){
+            toast.error(error.response.data.global);
+        } else {
+            toast.error('Cocktail was not added', {
+                position: toast.POSITION.BOTTOM_RIGHT,
+            });
+        }
     }
 }
 
