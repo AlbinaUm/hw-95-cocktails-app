@@ -1,8 +1,14 @@
 const mongoose = require('mongoose');
 
 const IngredientSchema = new mongoose.Schema({
-  title: String,
-  amount: String,
+  title: {
+    type: String,
+    required: true,
+  },
+  amount: {
+    type: String,
+    required: true,
+  },
 });
 
 const CocktailSchema = new mongoose.Schema({
@@ -15,7 +21,10 @@ const CocktailSchema = new mongoose.Schema({
     type: String,
     required: true
   },
-  image: String,
+  image: {
+    type: String,
+    required: true,
+  },
   recipe: {
     type: String,
     required: true,
