@@ -35,11 +35,11 @@ const ShortCocktailInfo = ({image, title, published, id, onDelete, onPublished})
                 {user.role === 'admin' ?
                     <div>
                         {published === false ?
-                            <button onClick={() => onPublished({id})}>Published</button>
+                            <button className="PublishBtnForAdmin" onClick={() => onPublished({id})}>Published</button>
                             :
                             null
                         }
-                        <button onClick={() => onDelete({id})}>Delete</button>
+                        <button className="DeleteBtnForAdmin" onClick={() => onDelete({id})}>Delete</button>
                     </div>
                     :
                     <div style={{textAlign: "left", fontSize: "14px", margin: "10px 0 0 10px"}}>
